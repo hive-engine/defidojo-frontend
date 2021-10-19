@@ -1,0 +1,553 @@
+$enable-rounded: false;
+$body-color: #fff;
+
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-vue/src/index.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Monda", sans-serif;
+  background-color: #111;
+  background-image: url("/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom center;
+}
+
+a {
+  color: #fff;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.table {
+  thead {
+    th {
+      border-color: $gray-800;
+    }
+  }
+
+  td,
+  th {
+    border-color: $gray-800;
+
+    &:last-of-type {
+      text-align: right;
+    }
+  }
+}
+
+.icon {
+  width: 24px;
+}
+
+.btn .icon {
+  width: 18px;
+  margin-bottom: 1px;
+}
+
+.btn {
+  .spinner-border-sm {
+    margin-bottom: 5px;
+  }
+}
+
+.navbar {
+  height: 80px;
+
+  .icon {
+    width: 16px;
+  }
+
+  .nav-link {
+    color: #fff !important;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+    }
+  }
+
+  &.bg-dark {
+    background-color: rgba($color: #000, $alpha: 0.5) !important;
+  }
+
+  .dropdown-menu {
+    background-color: rgba($color: #000, $alpha: 0.9) !important;
+  }
+
+  .dropdown-item {
+    color: #fff;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+      background-color: #000;
+      opacity: 0.8;
+    }
+  }
+}
+
+.close {
+  color: #fff;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+  }
+}
+
+.modal-content {
+  background-color: $gray-900;
+}
+
+.modal-header,
+.modal-footer {
+  border-color: $gray-800;
+}
+
+.form-control,
+input.vue-pincode-input {
+  background-color: $gray-800;
+  border-color: $gray-700;
+  color: #fff;
+
+  &.focus,
+  &:focus {
+    background-color: $gray-800;
+    box-shadow: none;
+    border-color: $gray-700;
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &::-webkit-input-placeholder {
+    color: darken($color: $body-color, $amount: 30);
+  }
+
+  &:-ms-input-placeholder {
+    color: darken($color: $body-color, $amount: 30);
+  }
+
+  &::placeholder {
+    color: darken($color: $body-color, $amount: 30);
+  }
+
+  .border-left,
+  .border-right {
+    border-color: $gray-700 !important;
+  }
+}
+
+.input-group-text {
+  background-color: $gray-800;
+  border-color: $gray-700;
+  color: #fff;
+}
+
+.card {
+  background-color: $gray-800;
+  border-color: $gray-600;
+  color: $body-color;
+}
+
+.text-muted {
+  color: rgba($color: $body-color, $alpha: 0.7) !important;
+}
+
+.page-item {
+  .page-link {
+    background-color: $gray-800 !important;
+    border-color: $gray-600 !important;
+    color: $body-color;
+
+    &:hover,
+    &:focus {
+      color: darken($body-color, 10);
+    }
+  }
+
+  &.active .page-link {
+    background-color: $gray-600 !important;
+  }
+}
+
+.list-group-item {
+  background-color: $gray-800 !important;
+  color: $body-color;
+
+  &:hover,
+  &:focus {
+    color: darken($body-color, 10);
+  }
+
+  &.disabled {
+    color: $body-color;
+  }
+}
+
+.vue-notification-group {
+  margin-top: 100px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+
+.masthead {
+  text-align: center;
+  min-height: 450px;
+  padding: 50px 15px;
+}
+
+.box {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba($color: #000, $alpha: 0.5);
+
+  &:nth-child(even) {
+    background-color: rgba($color: #000, $alpha: 0.3);
+  }
+
+  a {
+    text-shadow: 4px 0px 4px #777;
+  }
+}
+
+.pack {
+  background-color: rgba($color: #000, $alpha: 0.1);
+  box-shadow: 0 1px 9px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  max-width: 300px;
+  padding: 1rem;
+  border: 1px solid $gray-800;
+  transition-duration: 0.5s;
+  margin: 0 auto;
+
+  &.selected,
+  &:hover {
+    border: 1px solid $gray-600;
+    background: rgba($color: #000, $alpha: 0.4);
+    cursor: pointer;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    height: 150px;
+    margin-bottom: 20px;
+  }
+
+  .symbol {
+    font-weight: bold;
+    font-size: 2.8rem;
+  }
+
+  .cards {
+    @extend .text-muted;
+    font-weight: bold;
+  }
+
+  .price {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2rem;
+  }
+
+  .quantity {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+}
+
+.modal-alert {
+  .alert-header {
+    border-bottom: none;
+    position: relative;
+    text-align: center;
+    margin: -16px -16px 0;
+    padding: 25px;
+    color: #fff;
+
+    &.success {
+      background: #82ce34;
+    }
+
+    &.error {
+      background: #e85e6c;
+    }
+  }
+
+  .alert-body {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .icon {
+    width: 80px;
+  }
+}
+
+$side: 120px;
+$l: 90px;
+$num: 10;
+$dur: 10s;
+
+@mixin plane($w, $h) {
+  width: $w;
+  height: $h;
+  transform-style: preserve-3d;
+}
+
+@mixin view($p) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  perspective: $p;
+}
+
+@mixin center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.pack-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  // Code from https://codepen.io/wontem/pen/PqYXop/
+  .view {
+    @include view(400);
+  }
+
+  .border-circle {
+    border: 40px double transparent;
+    position: relative;
+    border-radius: 50%;
+    margin: 0 auto;
+    height: 500px;
+    width: 500px;
+
+    // background-image: linear-gradient(#202945, #202945), radial-gradient(circle at top left, #274c5e, #77919d);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: inset 0 0 20px 30px rgba(0, 0, 0, 0.3), 0 0 10px 10px rgba(0, 0, 0, 0.6);
+  }
+
+  .plane {
+    @include plane($side, $side);
+
+    &.main {
+      @include center;
+
+      animation: rotate 100s infinite linear;
+      transform: rotateX(60deg) rotateZ(-30deg);
+
+      .circle {
+        width: $side;
+        height: $side;
+        position: absolute;
+        transform-style: preserve-3d;
+        border-radius: 100%;
+        box-sizing: border-box;
+        box-shadow: 0 0 60px rgba(#ff44ff, 1), inset 0 0 60px rgba(#ff44ff, 1);
+
+        &::before,
+        &::after {
+          content: "";
+          display: block;
+          @include center;
+          width: 10%;
+          height: 10%;
+          border-radius: 100%;
+          background: rgba(#ff44ff, 1);
+          box-sizing: border-box;
+          box-shadow: 0 0 60px 2px rgba(#ff44ff, 1);
+        }
+
+        &::before {
+          transform: translateZ(-$l);
+        }
+
+        &::after {
+          transform: translateZ($l);
+        }
+
+        @for $i from 1 through 5 {
+          &:nth-child(#{$i}) {
+            transform: rotateZ($i / 5 * 360deg) rotateX(63.435deg);
+          }
+        }
+      }
+
+      &.animate {
+        animation: rotate 10s infinite linear;
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0) rotateY(0) rotateZ(0);
+  }
+
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
+#viewCardsModal___BV_modal_backdrop_ {
+  opacity: 0.95;
+}
+
+.view-cards-modal {
+  .modal-content {
+    background: transparent !important;
+  }
+
+  .modal-header {
+    border: none;
+  }
+
+  .packmanager-card {
+    position: relative;
+    cursor: pointer;
+    min-height: 200px;
+    max-height: 280px;
+    max-width: 200px;
+    margin: 0 auto;
+
+    .card-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://cdn.tribaldex.com/defidojo/backsideofcard.png");
+      background-color: #fff;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px 5px rgba($color: #fff, $alpha: 0.5);
+      }
+
+      &.rare {
+        &:hover {
+          box-shadow: 0 0 10px 8px rgba($color: #cbe86b, $alpha: 0.5);
+        }
+      }
+
+      &.epic {
+        &:hover {
+          box-shadow: 0 0 10px 8px rgba($color: #f16b6f, $alpha: 0.5);
+        }
+      }
+    }
+  }
+}
+
+.dojo {
+  position: relative;
+  background-color: #16090e;
+  min-height: 255px;
+  max-width: 450px;
+  margin: 0 auto;
+  cursor: pointer;
+
+  .card-count {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    width: 55px;
+    height: 55px;
+    line-height: 45px;
+    color: #000;
+    background-color: #ffaa31;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+    border: 5px double #fff;
+  }
+}
+
+.filter-button {
+  display: inline-block;
+
+  label {
+    height: 40px;
+    width: 40px;
+    border: 2px solid gray;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    line-height: 36px;
+    text-align: center;
+    transition: 0.2s;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: rgba($color: coral, $alpha: 0.3);
+      border-color: coral;
+    }
+  }
+
+  input:checked + label {
+    background-color: rgba($color: coral, $alpha: 0.3);
+    border-color: coral;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 10px;
+  }
+}
+
+.cart-icon {
+  position: relative;
+
+  .cart-item-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
