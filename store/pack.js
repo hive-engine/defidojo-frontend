@@ -14,20 +14,16 @@ export const mutations = {
 
 export const actions = {
   async startPurchase ({ commit }, { payment_method: paymentMethod, currency = 'USD', items }) {
-    try {
-      const purchaseData = await this.$API.$post('purchases/start', {
-        username: this.$auth.user.username,
-        items,
-        payment_method: paymentMethod,
-        currency
-      })
+    const purchaseData = await this.$API.$post('purchases/start', {
+      username: this.$auth.user.username,
+      items,
+      payment_method: paymentMethod,
+      currency
+    })
 
-      commit('SET_PURCHASE_DATA', purchaseData)
+    commit('SET_PURCHASE_DATA', purchaseData)
 
-      return purchaseData
-    } catch (e) {
-      console.log(e)
-    }
+    return purchaseData
   },
 
   async validatePayPalPayment (ctx, { uid, tx }) {

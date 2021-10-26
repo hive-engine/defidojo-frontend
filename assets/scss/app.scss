@@ -278,6 +278,11 @@ input.vue-pincode-input {
     font-size: 2rem;
   }
 
+  .available {
+    @extend .text-muted;
+    font-size: 0.9rem;
+  }
+
   .quantity {
     font-style: italic;
     font-weight: 700;

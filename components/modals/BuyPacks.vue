@@ -16,13 +16,50 @@
           <div class="price">
             ${{ pack.price }}
           </div>
+
+          <div class="available">
+            Available {{ pack.remaining.toLocaleString() }} of {{ pack.quantity.toLocaleString() }}
+          </div>
         </div>
       </b-col>
     </b-row>
 
-    <b-form-spinbutton v-model="quantity" size="lg" :min="1" :max="200" class="w-25 mx-auto mt-5 mb-3" />
+    <b-form-spinbutton
+      v-model="quantity"
+      size="lg"
+      :min="1"
+      :max="2000"
+      class="mx-auto mt-5 mb-3"
+      style="width:200px;"
+    />
 
-    <h3 class="text-center font-style-italic">
+    <div class="text-center font-italic text-uppercase">
+      <template v-if="bonusQuantity > 0">
+        + {{ bonusQuantity }} additional bonus packs
+      </template>
+
+      <template v-else>
+        Select a Promo Amount to receive Bonus Packs!
+      </template>
+    </div>
+
+    <div class="d-flex justify-content-around mt-3">
+      <template v-for="(bonus,b) of settings.bonuses">
+        <b-button
+          :key="b"
+          v-b-tooltip.hover.v-info
+          :title="`+${bonus[1] * 100}% more Bonus Packs`"
+          class="mt-1"
+          variant="outline-info"
+          size="sm"
+          @click.prevent="quantity = bonus[0]"
+        >
+          {{ bonus[0] }} Packs
+        </b-button>
+      </template>
+    </div>
+
+    <h3 class="text-center font-style-italic mt-5">
       Total ${{ totalPayable }}
     </h3>
 
@@ -103,6 +140,18 @@ export default {
 
     paypalScript () {
       return `https://www.paypal.com/sdk/js?client-id=${this.settings.paypal_client_id}&disable-funding=credit`
+    },
+
+    bonusQuantity () {
+      const bonus = this.settings.bonuses.reduce((acc, cur) => {
+        if (this.quantity >= cur[0]) {
+          acc = this.quantity * cur[1]
+        }
+
+        return acc
+      }, 0)
+
+      return this.toFixedWithoutRounding(bonus, 0)
     }
   },
 
@@ -169,8 +218,12 @@ export default {
         })
 
         this.$bvModal.show('cryptoPaymentModal')
-      } catch {
-        //
+      } catch (e) {
+        this.$notify({
+          type: 'error',
+          text: e.response.data.message || 'There was an error. Please try again later.',
+          duration: 10000
+        })
       }
 
       this.modalBusy = false

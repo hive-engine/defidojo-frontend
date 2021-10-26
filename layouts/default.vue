@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Activity from '@/components/modals/Activity.vue'
 import BuyPacks from '@/components/modals/BuyPacks.vue'
 import CryptoPayment from '~/components/modals/CryptoPayment.vue'
@@ -37,7 +38,15 @@ export default {
     Login
   },
 
-  mixins: [NFTMixin]
+  mixins: [NFTMixin],
+
+  methods: {
+    ...mapActions(['fetchSettings'])
+  },
+
+  timers: {
+    fetchSettings: { time: 60 * 1000, autostart: true, repeat: true }
+  }
 }
 </script>
 

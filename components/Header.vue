@@ -10,28 +10,35 @@
 
         <b-navbar-nav class="ml-auto align-items-center d-none d-sm-flex">
           <b-nav-item class="text-center" @click.prevent="$bvModal.show('buyPacksModal')">
-            <img class="d-block mx-auto" src="/icons/stack.svg" style="width:25px">
+            <img class="d-block mx-auto" src="/icons/stack.png" style="width:25px">
             <div class="mt-1">
               Buy Packs
             </div>
           </b-nav-item>
 
           <b-nav-item class="text-center" :to="{name:'open'}">
-            <img class="d-block mx-auto" src="/icons/dices.svg" style="width:25px">
+            <img class="d-block mx-auto" src="/icons/dices.png" style="width:25px">
             <div class="mt-1">
               Open
             </div>
           </b-nav-item>
 
+          <b-nav-item v-if="$auth.loggedIn" class="text-center" :to="{name:'user-collection', params:{user:$auth.user.username}}">
+            <img class="d-block mx-auto" src="/icons/collection.png" style="width:25px">
+            <div class="mt-1">
+              Collection
+            </div>
+          </b-nav-item>
+
           <b-nav-item class="text-center" :to="{name:'market'}">
-            <img class="d-block mx-auto" src="/icons/shop.svg" style="width:25px">
+            <img class="d-block mx-auto" src="/icons/shop.png" style="width:25px">
             <div class="mt-1">
               Market
             </div>
           </b-nav-item>
 
           <b-nav-item class="text-center cart-icon" @click.prevent="$bvModal.show('activityModal')">
-            <img class="d-block mx-auto" src="/icons/cart.svg" style="width:25px">
+            <img class="d-block mx-auto" src="/icons/cart.png" style="width:25px">
             <div class="mt-1">
               Cart
             </div>
@@ -42,7 +49,7 @@
           </b-nav-item>
 
           <b-nav-item v-if="!$auth.loggedIn" class="text-center" @click.prevent="$bvModal.show('loginModal')">
-            <img class="d-block mx-auto" src="/icons/login.svg" style="width:25px">
+            <img class="d-block mx-auto" src="/icons/login.png" style="width:25px">
             <div class="mt-1">
               Login
             </div>
@@ -54,10 +61,6 @@
 
               <div>@{{ $auth.user.username }} <v-icon name="chevron-down" /></div>
             </template>
-
-            <b-dropdown-item :to="{name:'user-collection', params:{user:$auth.user.username}}">
-              Collection
-            </b-dropdown-item>
 
             <b-dropdown-item @click.prevent="$auth.logout()">
               Logout
